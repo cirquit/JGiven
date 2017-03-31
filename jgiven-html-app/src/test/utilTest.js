@@ -1,4 +1,4 @@
-import { nanosToReadableUnit, splitClassName, parseNextInt, replaceArguments, getArgumentInfos, getThumbnailPath, isImageType } from '../js/util.js'
+import { nanosToReadableUnit, splitClassName, parseNextInt, replaceArguments, getArgumentInfos, getThumbnailPath, isImageType, pathToValidId } from '../js/util.js'
 
 describe("Util", function () {
 
@@ -323,4 +323,14 @@ describe("Util", function () {
       });
 
   });
+  describe("pathToValidId", function() {
+        it("works for paths", function(){
+             var p1 = "some/path";
+             var p2 = "some/path/image.png";
+
+             expect(pathToValidId(p1)).toEqual("some-path");
+             expect(pathToValidId(p2)).toEqual("some-path-image-png");
+
+        });
+    });
 });

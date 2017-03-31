@@ -13,7 +13,8 @@ import { getTagKey,
          getArgumentInfos,
          replaceArguments,
          getThumbnailPath,
-         isImageType} from '../util.js'
+         isImageType,
+         pathToValidId} from '../util.js'
 
 jgivenReportApp.controller('JGivenReportCtrl', function ($scope, $rootScope, $document, $timeout, $sanitize, $location, $window, localStorageService,
                                                          dataService, tagService, classService, searchService, optionService) {
@@ -704,6 +705,10 @@ jgivenReportApp.controller('JGivenReportCtrl', function ($scope, $rootScope, $do
    $scope.isImage = function isImage(attachment) {
     var mimeType = attachment.mediaType;
     return isImageType(mimeType);
+   }
+
+   $scope.pathToId = function pathToId(path) {
+    return pathToValidId(path);
    }
 
   $scope.init();

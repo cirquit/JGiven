@@ -6,7 +6,6 @@
   <title ng-bind="metaData.title">Loading...</title>
   <link rel="stylesheet" href="styles.css"/>
   <link rel="stylesheet" href="css/custom.css"/>
-
 </head>
 <body>
 
@@ -96,7 +95,7 @@
                     class="{{ attachment.title ? 'has-tip' : '' }}"
                     tooltip-html-unsafe="{{ attachment.title }}"
                     tooltip-popup-delay="250">
-                <a target="_blank" href="data/{{ attachment.value }}">
+                <a href="#" data-reveal-id="{{ pathToId(attachment.value) }}">
                   <span ng-if="isImage(attachment) && metaData.showThumbnails">
                     <img class="jgiven-html-thumbnail" src="data/{{ ::toThumbnailPath(attachment.value) }}" alt="{{ attachment.title }}">
                     <span class="attachment-index"
@@ -107,6 +106,11 @@
                                                      ng-if="scenario.scenarioCases.length > 1 && scenario.casesAsTable">{{ scenarioCase.caseNr }}</span></i>
                   </span>
                 </a>
+                <div id="{{ pathToId(attachment.value) }}" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+                    <h2 id="modalTitle">{{ attachment.title }}</h2>
+                    <img src="data/{{ attachment.value }}" alt="{{ attachment.title }}">
+                    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+                </div>
               </span>
             </span>
           </span>
@@ -683,5 +687,9 @@
 <script type="text/javascript" src="js/custom.js" charset="utf-8"></script>
 <script type="text/javascript" src="data/metaData.js" charset="utf-8"></script>
 <script type="text/javascript" src="data/tags.js" charset="utf-8"></script>
+<script type="text/javascript" src="data/foundation.min.js" charset="utf-8"></script>
+<script>
+  $(document).foundation();
+</script>
 </body>
 </html>

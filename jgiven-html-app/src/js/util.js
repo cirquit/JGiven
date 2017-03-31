@@ -238,3 +238,14 @@ export function isImageType(mimetype) {
     var splitted = mimetype.split("/");
     return splitted !== null && splitted[0] === "image";
 }
+
+export function pathToValidId(path) {
+    var replace = function(c) {
+        if (c === '/' || c === '.'){
+            return '-';
+        } else {
+            return c;
+        }
+    }
+    return path.split("").map(replace).join("");
+}
